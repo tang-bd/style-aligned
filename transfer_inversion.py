@@ -48,7 +48,7 @@ sa_args = sa_handler.StyleAlignedArgs(
 handler.register(sa_args)
 
 zts = inversion.ddim_inversion(
-    pipeline, src_images[0], prompts[0], num_inference_steps, 4.0
+    pipeline, src_images[0], prompts[0], num_inference_steps, 2.0
 )
 zT, inversion_callback = inversion.make_inversion_callback(zts, offset=5)
 
@@ -65,5 +65,4 @@ images_a = pipeline(
     guidance_scale=10.0,
 ).images
 
-for i, image in enumerate(images_a):
-    image.save(f"./output/{prompts[i]}.png")
+images_a[-1].save(f"./output/{prompts[-1]}.png")
